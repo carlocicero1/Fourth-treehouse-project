@@ -111,6 +111,9 @@ h1 {
   #player2.active {
     background: #3688C3; }
 
+    .mouseover-o {
+  background-image: url(../img/o.svg);
+}
 .boxes {
   width: 480px;
   margin: 3em auto 0; }
@@ -138,4 +141,93 @@ h1 {
       background-color: #3688C3;
       background-image: url(../img/x.svg); }
 
+   /* Added CSS */   
 
+.player1-winner {
+  background-color: orange;
+  min-height: 110vh;
+  color: black;
+  text-align: center;
+  padding-top: 3em;
+}
+.player2-winner {
+  background-color: #336699;
+  min-height: 110vh;
+  color: black;
+  text-align: center;
+  padding-top: 3em;
+}
+.end-title  {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: -.6em;
+  color: white;
+  text-align: left;
+  padding-left: 46%;
+}
+.winner {
+  color: white;
+  margin-bottom: 100px;
+}
+.winnerSymbol {
+  margin-top: 1em;
+  margin-bottom: 90px;
+  color: black;
+  font-size: 200px;
+  font-weight: normal;
+  
+}
+.winnerText {
+  margin-top: 100px;
+  color: white;
+  font-weight: bold;
+  font-size: 5em;
+  margin-top: -265px;
+}
+.end-button {
+  height: 3.5em;
+  width: 15em;
+  align-content: center;
+  font-weight: 600;
+  border-radius: 5%;
+  border-color: white;
+  margin-top: 8em;
+  border-right-width: -100px;
+}
+.title {
+  margin-bottom: 4em;
+  margin-top: -3em;
+}
+.x {
+  color: orange;
+}
+.o {
+  color:blue;
+}
+#mouseover-o {
+  background: lightgrey;
+  background-image: url(../img/o.svg);
+  background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#mouseover-x {
+  background: lightgrey;
+  background-image: url(../img/x.svg);
+  background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+ .draw {
+   font-size: 5em;
+  padding-top: 180px;
+  text-align: center;
+  background-color: red;
+  position: absolute; top: 0; left: 0; height: 100%; width: 100%;
+  color: white;
+}
+.drawButton {
+  margin-top: 40px;
+  background-color: white;
+  color: red;
+}
