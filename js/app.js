@@ -29,26 +29,13 @@ $('.button').on('click', () => {
 	$('.screen-start').hide();
 	$('.board').show();
 })
+
 $('.drawButton').on('click', () => {
 	location.reload();
 	
 })
 
-	function currentPlayer () {
-		if(playersTurn) {
-			$('#player1').addClass('active')
-			$('#player2').removeClass('active')
-		
-		}
-		 else if (!playersTurn) {
-			$('#player2').addClass('active')
-			$('#player1').removeClass('active')
-		
-		}
-	};
-
-currentPlayer();
-
+//assigns class dynamically to each box depending on player turn
 $('.boxes li').on('click', (e) => {
 	const $target = $(e.target);
 	if($($target).hasClass(orange) || $($target).hasClass(blue) ) {
@@ -71,6 +58,23 @@ $('.boxes li').on('click', (e) => {
 }
 })
 
+//Determines current player
+function currentPlayer () {
+	if(playersTurn) {
+		$('#player1').addClass('active')
+		$('#player2').removeClass('active')
+	
+	}
+	 else if (!playersTurn) {
+		$('#player2').addClass('active')
+		$('#player1').removeClass('active')
+	
+	}
+};
+
+currentPlayer();
+
+//adds player score to respective arrays and then checks for either a winner or draw after each selection
 function addScore (box) {
 		const boxVal = $(box).data('box')
 
@@ -88,6 +92,8 @@ function addScore (box) {
 			checkForDraw();
 		}
 }
+
+//Checks for draw if all boxes have been filled & no winner has been found
 function checkForDraw () {
 	if (usedBoxes.length === 9 && player1.hasWon === false && player2.hasWon === false) {
 		$('#board').hide();
@@ -95,6 +101,7 @@ function checkForDraw () {
 	}
 }
 
+//Loops through after every selected box and checks to see if there has been a winner
 function checkForWinner (playerScore) {
 
 	winningCombos.forEach((combo) => {
@@ -103,12 +110,14 @@ function checkForWinner (playerScore) {
 		combo.forEach((num) => {
 			if (playerScore.includes(num)) {
 				score++
+
 			}
 		})
 
 		if(score >= 3 && playerScore === orangeScore) {
 			player1.hasWon = true;
 			endGame();
+
 		} else if (score >= 3 && playerScore === blueScore) {
 			player2.hasWon = true;
 			endGame();
@@ -116,6 +125,7 @@ function checkForWinner (playerScore) {
 	})
 }
 
+//ends game upon player win
 function endGame () {
 	if(player1.hasWon) {
 		$('#board').hide()
@@ -131,6 +141,7 @@ function endGame () {
 		location.reload();
 	})
 
+// Shows current players image on hover of boxes
 $('.boxes li').on('mouseover', (e) => {
 	const $target = $(e.target);
 	const isAnO = $($target).hasClass(orange);
