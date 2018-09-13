@@ -5,9 +5,9 @@ $('.draw').hide();
 let playersTurn = true;
 const orange = 'box-filled-1';
 const blue = 'box-filled-2';
-const blueScore = [];
-const orangeScore = [];
-const usedBoxes = [];
+let blueScore = [];
+let orangeScore = [];
+let usedBoxes = [];
 const player1 = {
 		hasWon: false
 };
@@ -31,7 +31,7 @@ $('.button').on('click', () => {
 })
 
 $('.drawButton').on('click', () => {
-	location.reload();
+	resetBoard();
 	
 })
 
@@ -42,6 +42,7 @@ $('.boxes li').on('click', (e) => {
 		}
 	 else {
 	if(playersTurn) {
+		$($target).removeAttr('id')
 		$($target).addClass(orange)
 		playersTurn = false;
 		addScore($target);
@@ -49,6 +50,7 @@ $('.boxes li').on('click', (e) => {
 		return currentPlayer(playersTurn)
 	}
 	 else if (!playersTurn) {
+		$($target).removeAttr('id')
 		$($target).addClass(blue)
 		playersTurn = true;
 		addScore($target);
@@ -83,6 +85,7 @@ function addScore (box) {
 			usedBoxes.push(boxVal);
 			checkForWinner(orangeScore)
 			checkForDraw();
+			console.log(orangeScore)
 
 		}
 		else if($(box).hasClass(blue)) {
@@ -90,6 +93,8 @@ function addScore (box) {
 			usedBoxes.push(boxVal);
 			checkForWinner(blueScore);
 			checkForDraw();
+			console.log(blueScore)
+
 		}
 }
 
@@ -137,8 +142,24 @@ function endGame () {
 	}
 }	
 
+function resetBoard () {
+	$('.boxes li').removeClass(orange);
+	$('.boxes li').removeClass(blue);
+	$('.winnerScreen').hide();
+	$('.draw').hide();
+	playersTurn = true;
+	player1.hasWon = false;
+	player2.hasWon = false;
+	usedBoxes = [];
+	blueScore = [];
+	orangeScore = [];
+	currentPlayer();
+	$('#board').show();
+}
+
 	$('.end-button').on('click', () => {
-		location.reload();
+	
+		resetBoard();
 	})
 
 // Shows current players image on hover of boxes
@@ -150,8 +171,10 @@ $('.boxes li').on('mouseover', (e) => {
 	if (!isAnO && !isAnX) {
 		if(playersTurn) {
 			$($target).attr('id','mouseover-o')
+
 		} else if(!playersTurn) {
 			$($target).attr('id','mouseover-x');
+
 		}
 	}
 });
@@ -161,6 +184,7 @@ $('.boxes li').on('mouseout', (e) => {
 
 	if(playersTurn) {
 		$($target).removeAttr('id')
+
 	} else if(!playersTurn) {
 		$($target).removeAttr('id');
 	}
